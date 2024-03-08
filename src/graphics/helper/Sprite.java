@@ -8,6 +8,7 @@ public class Sprite {
 	private Point pos;
 	private int width;
 	private int height;
+	private boolean isVisible = true;
 
 	public Sprite() {
 	}
@@ -38,6 +39,10 @@ public class Sprite {
 	public int getWidth() {
 		return width;
 	}
+	
+	public boolean getVisibility() {
+		return isVisible;
+	}
 
 	public void setXY(Point p) {
 		pos = p;
@@ -58,14 +63,18 @@ public class Sprite {
 	}
 
 	public void draw(Graphics2D g2) {
-		g2.drawImage(spriteImage,
-				(int) pos.x, (int) pos.y,
-				width, height,
-				null);
+		if (isVisible)
+			g2.drawImage(spriteImage,
+					(int) pos.x, (int) pos.y,
+					width, height,
+					null);
 	}
 
 	public void update() {
 
+	}
+	public void visible(boolean isVisible) {
+		this.isVisible = isVisible;
 	}
 
 	private BufferedImage resize(BufferedImage originalImage, int targetWidth, int targetHeight) {
