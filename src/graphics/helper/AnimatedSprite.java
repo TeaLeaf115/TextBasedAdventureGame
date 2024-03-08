@@ -38,7 +38,7 @@ import java.awt.image.BufferedImage;
  * @see Graphics2D
  * @see Point
  */
-public class AnimatedSprite extends Sprite{
+public class AnimatedSprite extends Sprite {
 	
 	/** The array of frames that constitute the animation. */
 	private final BufferedImage[] frames;
@@ -51,17 +51,41 @@ public class AnimatedSprite extends Sprite{
 	
 	/** Index of the current frame being displayed. */
 	private int currentFrame = 0;
-	
+
+	private boolean isPaused = false;
+
 	/**
 	 * Constructs an AnimatedSprite with the specified frames and refresh rate.
 	 *
 	 * @param frames      The array of BufferedImage frames for the animation.
 	 * @param refreshRate The rate at which the animation should be refreshed, in refresh cycles.
 	 */
-	public AnimatedSprite(BufferedImage[] frames, int refreshRate) {
-		super();
+	public AnimatedSprite(BufferedImage[] frames, Point pos, int refreshRate) {
+		super(frames[0], pos);
 		this.frames = frames;
 		this.refreshRate = refreshRate;
+	}
+
+	@Override
+	public void scale(double scaleAmount) {
+		for (int i = 0; i < frames.length; i++) {
+			frames[i] = super.resize(frames[i], scaleAmount);
+		}
+	}
+
+	@Override
+	public void rotate(int degrees) {
+		for (int i = 0; i < frames.length; i++) {
+			frames[i] = super.rotate(frames[i], degrees);
+		}
+	}
+
+	public void pause() {
+		isPaused = true;
+	}
+
+	public void play() {
+		isPaused = false;
 	}
 	
 	/**
@@ -73,10 +97,11 @@ public class AnimatedSprite extends Sprite{
 	 */
 	@Override
 	public void draw(Graphics2D g2) {
-//		g2.drawImage(frames[currentFrame],
-//				(int) pos.getX(), (int) pos.getY(),
-//				tileWidth, tileHeight,
-//				null);
+		if (getVisibility())
+			g2.drawImage(frames[currentFrame],
+					(int) super.getX(), (int) super.getY(),
+					frames[0].getWidth(), frames[0].getHeight(),
+					null);
 	}
 	
 	/**
@@ -85,11 +110,13 @@ public class AnimatedSprite extends Sprite{
 	 */
 	@Override
 	public void update() {
-		refreshCounter++;
-		if (refreshCounter > refreshRate) {
-			// Check if the current frame is the last frame, if true, reset to the first frame.
-			currentFrame = (currentFrame == frames.length - 1) ? 0 : (currentFrame + 1);
-			refreshCounter = 0; // Reset the refresh counter after updating the frame.
+		if (!isPaused) {
+			refreshCounter++;
+			if (refreshCounter > refreshRate) {
+				// Check if the current frame is the last frame, if true, reset to the first frame.
+				currentFrame = (currentFrame == frames.length - 1) ? 0 : (currentFrame + 1);
+				refreshCounter = 0; // Reset the refresh counter after updating the frame.
+			}
 		}
 	}
 	
@@ -98,12 +125,18 @@ public class AnimatedSprite extends Sprite{
 	 * The updateReverse method should be called regularly to ensure a smooth animation.
 	 */
 	public void updateReverse() {
-		refreshCounter++;
-		if (refreshCounter > refreshRate) {
-			// Check if the current frame is the last frame, if true, reset to the first frame.
-			currentFrame = (currentFrame == 0) ? frames.length - 1 : (currentFrame - 1);
-			refreshCounter = 0; // Reset the refresh counter after updating the frame.
+		if (!isPaused) {
+			refreshCounter++;
+			if (refreshCounter > refreshRate) {
+				// Check if the current frame is the last frame, if true, reset to the first frame.
+				currentFrame = (currentFrame == 0) ? frames.length - 1 : (currentFrame - 1);
+				refreshCounter = 0; // Reset the refresh counter after updating the frame.
+			}
 		}
+	}
+
+	public void setRefreshRate(int newRR) {
+		refreshRate = newRR;
 	}
 	
 	/**
@@ -140,7 +173,7 @@ public class AnimatedSprite extends Sprite{
 	 *
 	 * @return The total number of frames in the animation.
 	 */
-	public int getMaxFrames() {
+	public int getTotalFrames() {
 		return frames.length;
 	}
 }

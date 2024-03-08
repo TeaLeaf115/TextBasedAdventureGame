@@ -8,5 +8,4 @@ public interface Room {
 	final String roomName = "";
 	final String roomDesc = """
 			""";
-	
 }

@@ -48,7 +48,15 @@ public class Sprite {
 		pos = p;
 	}
 
-	public void setImage(BufferedImage img) {
+	public void translateX(int dx) {
+		pos.x += dx;
+	}
+
+	public void translateY(int dy) {
+		pos.y += dy;
+	}
+
+	public void setSpriteImage(BufferedImage img) {
 		spriteImage = img;
 		this.width = spriteImage.getWidth();
 		this.height = spriteImage.getHeight();
@@ -71,8 +79,8 @@ public class Sprite {
 	}
 
 	public void update() {
-
 	}
+	
 	public void visible(boolean isVisible) {
 		this.isVisible = isVisible;
 	}
@@ -84,7 +92,7 @@ public class Sprite {
 		return outputImage;
 	}
 
-	private BufferedImage resize(BufferedImage originalImage, double scale) {
+	public BufferedImage resize(BufferedImage originalImage, double scale) {
 		if (scale <= 0.0)
 			throw new IllegalArgumentException("Second parameter has to be a non-negative, non-zero number");
 		int oImgWidth = originalImage.getWidth();
@@ -100,7 +108,7 @@ public class Sprite {
 	// Code From Thomas Fritsch
 	// (https://stackoverflow.com/questions/44086310/how-to-rotate-a-buffered-image-without-cropping-it-is-there-any-way-to-rotate-a)
 	// Modified by me to use 'TYPE_INT_ARGB' instead of 'TYPE_INT_RGB'
-	private BufferedImage rotate(BufferedImage originalImage, double degree) {
+	public BufferedImage rotate(BufferedImage originalImage, double degree) {
 		int w = originalImage.getWidth();
 		int h = originalImage.getHeight();
 		double toRad = Math.toRadians(degree);
