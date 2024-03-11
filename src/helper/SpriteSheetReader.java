@@ -1,4 +1,4 @@
-package graphics.helper;
+package helper;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -35,12 +35,19 @@ public class SpriteSheetReader {
 	private BufferedImage spriteSheet;
 	
 	// The width and height of each sprite tile.
-	private final int tileWidth;
-	private final int tileHeight;
+	private int tileWidth;
+	private int tileHeight;
 	
 	// The number of rows and columns in the sprite sheet.
-	private final int numRows;
-	private final int numCols;
+	private int numRows;
+	private int numCols;
+	
+	public SpriteSheetReader() {
+		tileWidth = 16;
+		tileHeight = 16;
+		numRows = 1;
+		numCols = 1;
+	}
 	
 	/**
 	 * Class constructor that reads the inputted file and specifies the width/height of each sprite.
@@ -103,5 +110,23 @@ public class SpriteSheetReader {
 		
 		// Returns a sub-image from the sprite sheet.
 		return spriteSheet.getSubimage(col * tileHeight, row * tileWidth, spriteWidth, spriteHeight);
+	}
+	
+	public void setFileName(String fileName) {
+		try {
+			this.spriteSheet = ImageIO.read(new File(fileName));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void setTileWidth(int tileWidth) {
+		this.tileWidth = tileWidth;
+		this.numCols = spriteSheet.getWidth() / tileWidth;
+	}
+	
+	public void setTileHeight(int tileHeight) {
+		this.tileHeight = tileHeight;
+		this.numRows = spriteSheet.getHeight() / tileHeight;
 	}
 }

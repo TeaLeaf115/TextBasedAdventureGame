@@ -1,4 +1,4 @@
-package graphics.helper;
+package graphics;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -44,7 +44,7 @@ public class AnimatedSprite extends Sprite {
 	private final BufferedImage[] frames;
 	
 	/** The rate at which the animation should be refreshed (updated). */
-	private final int refreshRate;
+	private int refreshRate;
 	
 	/** Counter to keep track of the number of refreshes. */
 	private int refreshCounter = 0;
