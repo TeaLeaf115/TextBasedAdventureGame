@@ -14,6 +14,7 @@ public class ImageHandler {
 	public static final String TOP_BUTTON_SS = "res/images/ui/TopButton_SS.png";
 	public static final String PAUSE_BUTTON = "res/images/ui/PauseButton.png";
 	public static final String SETTINGS_BUTTON = "res/images/ui/SettingsButton.png";
+	public static final String CHOICE_BUTTON = "res/images/ui/ChoiceButton.png";
 	
 	public static BufferedImage getImage(String fileName) {
 		try {

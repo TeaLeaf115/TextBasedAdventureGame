@@ -5,15 +5,18 @@ import gameStates.GameStates;
 import gameStates.Play;
 
 import java.awt.*;
+import java.awt.event.KeyListener;
 
 import static data.Seed.seed;
+import static main.GamePanel.SCREEN_WIDTH;
 
 public class Game implements Runnable{
 	private GameWindow gameWindow;
 	private GamePanel gamePanel;
 	private Thread gameThread;
 	private final int FPS = 60;
-	public final static float SCALE = 1.0f;
+	public static float WIDTH_SCALE = 1.0f;
+	public static float HEIGHT_SCALE = 1.0f;
 	
 	private Play playing;
 	
@@ -39,14 +42,12 @@ public class Game implements Runnable{
 	
 //	@SuppressWarnings("incomplete-switch")
 	public void render(Graphics g) {
-//		System.out.println("Here");
 		switch (GameStates.state) {
 			case STARTUP -> {
 			}
 			case MAIN_MENU -> {
 			}
 			case PLAY -> {
-//				System.out.println("Game");
 				playing.draw(g);
 			}
 			case INVENTORY -> {
@@ -62,7 +63,7 @@ public class Game implements Runnable{
 	
 	@SuppressWarnings("incomplete-switch")
 	public void update() {
-//		gamePanel.update();
+		updateScreen();
 		switch (GameStates.state) {
 			case STARTUP -> {
 			}
@@ -119,5 +120,17 @@ public class Game implements Runnable{
 				delta--;
 			}
 		}
+	}
+	
+	public Play getPlaying() {
+		return playing;
+	}
+	
+	public void updateScreen() {
+		gamePanel.update();
+		WIDTH_SCALE = SCREEN_WIDTH / 700f;
+		
+		System.out.println("SCREEN_WIDTH: " + SCREEN_WIDTH);
+		System.out.println("WIDTH_SCALE: " + WIDTH_SCALE);
 	}
 }

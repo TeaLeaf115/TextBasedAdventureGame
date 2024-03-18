@@ -29,7 +29,7 @@ public class PlayStateButtons {
 	}
 	
 	private void initBounds() {
-		bounds = new Rectangle(xPos, yPos, B_WIDTH, B_HEIGHT);
+		bounds = new Rectangle(xPos, yPos, SETTINGS_WIDTH, SETTINGS_HEIGHT);
 	}
 	
 	@SuppressWarnings("incomplete-switch")
@@ -43,7 +43,7 @@ public class PlayStateButtons {
 	
 	public void draw(Graphics g) {
 //		System.out.println("PlayStateButtons");
-		g.drawImage(img, xPos, yPos, B_WIDTH, B_HEIGHT, null);
+		g.drawImage(img, xPos, yPos, SETTINGS_WIDTH, SETTINGS_HEIGHT, null);
 	}
 	
 	public void update() {
