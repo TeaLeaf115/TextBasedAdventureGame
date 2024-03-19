@@ -3,11 +3,12 @@ package main;
 import data.Seed;
 import gameStates.GameStates;
 import gameStates.Play;
+import helper.UIConstants;
 
 import java.awt.*;
-import java.awt.event.KeyListener;
 
 import static data.Seed.seed;
+import static main.GamePanel.SCREEN_HEIGHT;
 import static main.GamePanel.SCREEN_WIDTH;
 
 public class Game implements Runnable{
@@ -129,8 +130,6 @@ public class Game implements Runnable{
 	public void updateScreen() {
 		gamePanel.update();
 		WIDTH_SCALE = SCREEN_WIDTH / 700f;
-		
-		System.out.println("SCREEN_WIDTH: " + SCREEN_WIDTH);
-		System.out.println("WIDTH_SCALE: " + WIDTH_SCALE);
+		HEIGHT_SCALE = SCREEN_HEIGHT / 400f;
 	}
 }

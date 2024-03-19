@@ -52,7 +52,7 @@ public class Button {
 		this.mousePressed = mousePressed;
 	}
 	
-	public void applyGameStates() {
+	public void applyStateChange() {
 		GameStates.state = state;
 	}
 	

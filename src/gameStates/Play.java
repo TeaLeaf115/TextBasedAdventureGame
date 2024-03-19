@@ -10,8 +10,8 @@ import graphics.buttons.Button;
 import graphics.buttons.ChoiceButton;
 import main.Game;
 
-import static helper.UIConstants.Buttons.X_OFFSETS;
-import static helper.UIConstants.Buttons.Y_OFFSETS;
+import static helper.UIConstants.Buttons.*;
+import static helper.UIConstants.Description.BOX_HEIGHT;
 import static helper.UIConstants.RoomImage.SCALED_HEIGHT;
 import static main.GamePanel.SCREEN_WIDTH;
 
@@ -38,22 +38,28 @@ public class Play extends State implements GSInterface{
 	}
 	
 	private void loadChoices() {
-		choices[0] = new ChoiceButton(0, SCALED_HEIGHT, ButtonTypes.CHOICE, GameStates.PLAY, Room.PLACEHOLDER, 0);
+		choices[0] = new ChoiceButton(0, SCALED_HEIGHT + BOX_HEIGHT, ButtonTypes.CHOICE, GameStates.PLAY, Room.PLACEHOLDER, 0);
+		choices[1] = new ChoiceButton(CHOICE_WIDTH, SCALED_HEIGHT + BOX_HEIGHT, ButtonTypes.CHOICE, GameStates.PLAY, Room.PLACEHOLDER, 1);
+		choices[2] = new ChoiceButton(0, SCALED_HEIGHT + BOX_HEIGHT + CHOICE_HEIGHT, ButtonTypes.CHOICE, GameStates.PLAY, Room.PLACEHOLDER, 2);
+		choices[3] = new ChoiceButton(CHOICE_WIDTH, SCALED_HEIGHT + BOX_HEIGHT + CHOICE_HEIGHT, ButtonTypes.CHOICE, GameStates.PLAY, Room.PLACEHOLDER, 3);
 	}
 	
 	@Override
 	public void update() {
 		for (Button b : buttons)
 			b.update();
-		choices[0].update();
+		for (ChoiceButton c : choices)
+			c.update();
 	}
 	
 	@Override
 	public void draw(Graphics g) {
+		System.out.println(Room.currRoom);
 		currentRoom.draw(g);
 		for (Button b : buttons)
 			b.draw(g);
-		choices[0].draw(g);
+		for (ChoiceButton c : choices)
+			c.draw(g);
 	}
 	
 	@Override
@@ -63,24 +69,42 @@ public class Play extends State implements GSInterface{
 				b.setMousePressed(true);
 			}
 		}
+		
+		for (ChoiceButton c : choices) {
+			if (c.isIn(e)) {
+				c.setMousePressed(true);
+			}
+		}
 	}
 	
 	public void mouseReleased(MouseEvent e) {
 		for (Button b : buttons) {
 			if (b.isIn(e)) {
-				if (b.isMousePressed())
-					b.applyGameStates();
+				if (b.isMousePressed()) {
+					b.applyStateChange();
+					System.out.println(GameStates.state);
+				}
+				break;
+			}
+		}
+		for (ChoiceButton c : choices) {
+			if (c.isIn(e)) {
+				System.out.println(true);
+				if (c.isMousePressed()) {
+					c.applyStateChange();
+					System.out.println(Room.currRoom);
+				}
 				break;
 			}
 		}
 		resetButtons();
-		System.out.println(GameStates.state);
 	}
 	
 	private void resetButtons() {
 		for (Button b : buttons)
 			b.resetBools();
-		
+		for (ChoiceButton c : choices)
+			c.resetBools();
 	}
 	
 	@Override

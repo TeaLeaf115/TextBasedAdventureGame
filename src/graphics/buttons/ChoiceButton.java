@@ -5,6 +5,11 @@ import gameStates.GameStates;
 
 import java.awt.*;
 
+import static helper.UIConstants.Buttons.X_OFFSETS;
+import static helper.UIConstants.Buttons.Y_OFFSETS;
+import static helper.UIConstants.Text.CHOICE_PX;
+import static main.GamePanel.font;
+
 public class ChoiceButton extends Button{
 	private Room room;
 	private int choiceNum;
@@ -17,6 +22,13 @@ public class ChoiceButton extends Button{
 	@Override
 	public void draw(Graphics g) {
 		g.drawImage(type.img, xPos, yPos, type.width, type.height, null);
-		main.GamePanel.drawWrappedString(g, room.getRoomDesc(), super.xPos, super.yPos, type.width);
+		Font f = font.deriveFont(CHOICE_PX);
+		g.setFont(f);
+		main.GamePanel.drawWrappedString(g, room.getChoice(choiceNum).getDesc(), xPos + X_OFFSETS, (int)(yPos +CHOICE_PX) + Y_OFFSETS, type.width - 8, f);
+	}
+	
+	@Override
+	public void applyStateChange() {
+		Room.currRoom = room.getChoice(choiceNum).getNextRoom();
 	}
 }

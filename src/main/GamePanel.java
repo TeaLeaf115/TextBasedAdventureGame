@@ -9,12 +9,14 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+import static helper.UIConstants.Text.*;
+
 public class GamePanel extends JPanel {
 	public static int SCREEN_WIDTH = 700;
 	public static int SCREEN_HEIGHT = 400;
 	private MouseInputs mouseInputs;
 	private Game game;
-	private Font font;
+	public static Font font;
 	
 	public GamePanel(Game game) {
 		mouseInputs = new MouseInputs(this);
@@ -26,7 +28,7 @@ public class GamePanel extends JPanel {
 		this.setBackground(Color.BLACK);
 		try {
 			// Load the custom font from a file
-			font = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/prstart.ttf")).deriveFont(10f);
+			font = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/prstart.ttf"));
 		} catch (IOException | FontFormatException e) {
 			e.printStackTrace();
 			// Handle font loading error
@@ -41,19 +43,20 @@ public class GamePanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.setColor(Color.WHITE);
-		g.setFont(font);
+		g.setFont(font.deriveFont(DEFAULT_PX));
 		game.render(g);
 	}
 	
 	public void update() {
 		SCREEN_WIDTH = getWidth();
+		SCREEN_HEIGHT = getHeight();
 	}
 	
 	public Game getGame() {
 		return game;
 	}
 	
-	public static void drawWrappedString(Graphics g, String text, int x, int y, int maxLineLength) {
+	public static void drawWrappedString(Graphics g, String text, int x, int y, int maxLineLength, Font f) {
 		// Split the text into lines
 		String[] lines = text.split("\n");
 		for (String line : lines) {
@@ -65,7 +68,7 @@ public class GamePanel extends JPanel {
 				if (g.getFontMetrics().stringWidth(lineBuilder.toString() + " " + word) > maxLineLength) {
 					// Draw the current line and reset line StringBuilder
 					g.drawString(lineBuilder.toString(), x, y);
-					y += UIConstants.Text.LINE_HEIGTH;
+					y += UIConstants.Text.LINE_HEIGHT(f.getSize2D());
 					lineBuilder = new StringBuilder();
 				}
 				// Add the word to the current line
@@ -73,7 +76,7 @@ public class GamePanel extends JPanel {
 			}
 			// Draw the last line
 			g.drawString(lineBuilder.toString(), x, y);
-			y += UIConstants.Text.LINE_HEIGTH;
+			y += UIConstants.Text.LINE_HEIGHT(f.getSize2D());
 		}
 	}
 }

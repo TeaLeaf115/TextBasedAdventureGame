@@ -7,7 +7,7 @@ public class Choice {
 	
 	public Choice(String desc) {
 		this.desc = desc;
-		this.desc = null;
+		this.leadsTo = null;
 	}
 	
 	public Choice(String desc, Room leadsTo) {
@@ -17,5 +17,9 @@ public class Choice {
 	
 	public String getDesc() {
 		return desc;
+	}
+	
+	public Room getNextRoom() {
+		return leadsTo;
 	}
 }
