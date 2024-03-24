@@ -10,6 +10,7 @@ import graphics.buttons.Button;
 import graphics.buttons.ChoiceButton;
 import main.Game;
 
+import static data.Room.currRoom;
 import static helper.UIConstants.Buttons.*;
 import static helper.UIConstants.Description.BOX_HEIGHT;
 import static helper.UIConstants.RoomImage.SCALED_HEIGHT;
@@ -22,7 +23,7 @@ public class Play extends State implements GSInterface{
 	
 	public Play(Game game) {
 		super(game);
-		currentRoom = Room.currRoom;
+		currentRoom = currRoom;
 		loadImg();
 		loadButtons();
 		loadChoices();
@@ -54,8 +55,8 @@ public class Play extends State implements GSInterface{
 	
 	@Override
 	public void draw(Graphics g) {
-		System.out.println(Room.currRoom);
-		currentRoom.draw(g);
+		System.out.println(currRoom);
+		currRoom.draw(g);
 		for (Button b : buttons)
 			b.draw(g);
 		for (ChoiceButton c : choices)
@@ -72,6 +73,7 @@ public class Play extends State implements GSInterface{
 		
 		for (ChoiceButton c : choices) {
 			if (c.isIn(e)) {
+				System.out.println(true);
 				c.setMousePressed(true);
 			}
 		}
@@ -92,7 +94,7 @@ public class Play extends State implements GSInterface{
 				System.out.println(true);
 				if (c.isMousePressed()) {
 					c.applyStateChange();
-					System.out.println(Room.currRoom);
+					System.out.println(currRoom);
 				}
 				break;
 			}

@@ -7,7 +7,7 @@ public class Choice {
 	
 	public Choice(String desc) {
 		this.desc = desc;
-		this.leadsTo = null;
+		this.leadsTo = Room.PLACEHOLDER;
 	}
 	
 	public Choice(String desc, Room leadsTo) {

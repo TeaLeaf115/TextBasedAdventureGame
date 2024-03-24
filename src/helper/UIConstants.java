@@ -4,6 +4,13 @@ import main.GamePanel;
 import main.GameWindow;
 
 public class UIConstants {
+	public static class Menu {
+		public static final int TITLE_WIDTH_DEFAULT = 288;
+		public static final int TITLE_HEIGHT_DEFAULT = 100;
+		public static int TITLE_WIDTH = (int)(TITLE_WIDTH_DEFAULT * Game.WIDTH_SCALE);
+	public static int TITLE_HEIGHT = (int)(TITLE_HEIGHT_DEFAULT * Game.HEIGHT_SCALE);
+	}
+	
 	public static class Buttons {
 		public static int X_OFFSETS = (int)(10 * Game.WIDTH_SCALE);
 		public static int Y_OFFSETS = (int)(10 * Game.HEIGHT_SCALE);

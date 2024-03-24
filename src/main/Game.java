@@ -2,8 +2,8 @@ package main;
 
 import data.Seed;
 import gameStates.GameStates;
+import gameStates.MainMenu;
 import gameStates.Play;
-import helper.UIConstants;
 
 import java.awt.*;
 
@@ -20,6 +20,7 @@ public class Game implements Runnable{
 	public static float HEIGHT_SCALE = 1.0f;
 	
 	private Play playing;
+	private MainMenu mainMenu;
 	
 	public Game() {
 		initClasses();
@@ -32,6 +33,7 @@ public class Game implements Runnable{
 	
 	private void initClasses() {
 		Seed seed = new Seed();
+		mainMenu = new MainMenu(this);
 		playing = new Play(this);
 	}
 	
@@ -47,6 +49,7 @@ public class Game implements Runnable{
 			case STARTUP -> {
 			}
 			case MAIN_MENU -> {
+			
 			}
 			case PLAY -> {
 				playing.draw(g);

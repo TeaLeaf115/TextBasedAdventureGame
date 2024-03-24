@@ -45,13 +45,16 @@ public class ImageHandler {
 	public static final String UTILITY_ROOM = "res/images/rooms/Utility_Room.png";
 	
 	// UI Elements
-	public static final String TOP_BUTTON_SS = "res/images/ui/TopButton_SS.png";
-	public static final String PAUSE_BUTTON = "res/images/ui/PauseButton.png";
-	public static final String SETTINGS_BUTTON = "res/images/ui/SettingsButton.png";
-	public static final String CHOICE_BUTTON = "res/images/ui/ChoiceButton.png";
+	public static final String TOP_BUTTON_SS = "res/images/ui/buttons/TopButton_SS.png";
+	public static final String PAUSE_BUTTON = "res/images/ui/buttons/PauseButton.png";
+	public static final String SETTINGS_BUTTON = "res/images/ui/buttons/SettingsButton.png";
+	public static final String CHOICE_BUTTON = "res/images/ui/buttons/ChoiceButton.png";
+	public static final String TITLE_LOGO = "res/images/ui/Title.png";
 	
 	public static BufferedImage getImage(String fileName) {
 		try {
+			if (fileName.equals(DISPOSAL_ROOM))
+				System.out.println(true);
 			return ImageIO.read(new File(fileName));
 		} catch (IOException e) {
 			e.printStackTrace();
