@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
 
 public class ImageHandler {
 	
@@ -45,16 +46,36 @@ public class ImageHandler {
 	public static final String UTILITY_ROOM = "res/images/rooms/Utility_Room.png";
 	
 	// UI Elements
+	
+	// Buttons
 	public static final String TOP_BUTTON_SS = "res/images/ui/buttons/TopButton_SS.png";
+	public static final String CLUE_MENU_BUTTON = "res/images/ui/buttons/ClueViewer.png";
 	public static final String PAUSE_BUTTON = "res/images/ui/buttons/PauseButton.png";
 	public static final String SETTINGS_BUTTON = "res/images/ui/buttons/SettingsButton.png";
 	public static final String CHOICE_BUTTON = "res/images/ui/buttons/ChoiceButton.png";
+	
+	public static final String CREDITS_BUTTON = "res/images/ui/buttons/CreditsButton.png";
+	public static final String SAVE_AND_QUIT_BUTTON = "res/images/ui/buttons/Save&QuitButton.png";
+	public static final String LOAD_FROM_SAVE_BUTTON = "res/images/ui/buttons/LoadFromSaveButton.png";
+	public static final String NEW_GAME_BUTTON = "res/images/ui/buttons/NewGameButton.png";
+	public static final String BACK_BUTTON = "res/images/ui/buttons/BackButton.png";
+	public static final String CONTINUE_BUTTON = "res/images/ui/buttons/ContinueButton.png";
+	public static final String NORM_DIFF_BUTTON = "res/images/ui/buttons/NormalDiffButton.png";
+	public static final String HARD_DIFF_BUTTON = "res/images/ui/buttons/HardDiffButton.png";
+	public static final String PLAY_AGAIN_BUTTON = "res/images/ui/buttons/PlayAgain.png";
+	public static final String GUESS_BUTTON = "res/images/ui/buttons/GuessButton.png";
+	
+	// Other Images
 	public static final String TITLE_LOGO = "res/images/ui/Title.png";
+	public static final String RAMhattanProject_logo = "res/images/ui/RAMhattanProject_logo.png";
+	public static final String CLUE_PAPER = "res/images/ui/CluePaper.png";
+	public static final String WINDOW_LOGO = "res/images/ui/WindowLogo.png";
+	public static final String NEW_CLUE_NOTIF = "res/images/ui/buttons/NewClueNotifIcon.png";
+	public static final String WIN = "res/images/ui/Win.png";
+	public static final String LOSE = "res/images/ui/Lose.png";
 	
 	public static BufferedImage getImage(String fileName) {
 		try {
-			if (fileName.equals(DISPOSAL_ROOM))
-				System.out.println(true);
 			return ImageIO.read(new File(fileName));
 		} catch (IOException e) {
 			e.printStackTrace();
