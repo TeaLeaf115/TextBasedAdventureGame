@@ -40,6 +40,7 @@ public class GamePanel extends JPanel {
 		this.setPreferredSize(size);
 	}
 	
+	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.setColor(Color.WHITE);
@@ -60,23 +61,31 @@ public class GamePanel extends JPanel {
 		// Split the text into lines
 		String[] lines = text.split("\n");
 		for (String line : lines) {
-			// Split the line into words
-			String[] words = line.split("\\s+");
-			StringBuilder lineBuilder = new StringBuilder();
-			for (String word : words) {
-				// Check if adding the current word exceeds the maximum width
-				if (g.getFontMetrics().stringWidth(lineBuilder.toString() + " " + word) > maxLineLength) {
-					// Draw the current line and reset line StringBuilder
-					g.drawString(lineBuilder.toString(), x, y);
-					y += UIConstants.Text.LINE_HEIGHT(f.getSize2D());
-					lineBuilder = new StringBuilder();
+			// Check if the line fits within the maximum line length
+			if (g.getFontMetrics().stringWidth(line) <= maxLineLength) {
+				// If it fits, draw the line as is
+				g.drawString(line, x, y);
+				y += UIConstants.Text.LINE_HEIGHT(f.getSize2D());
+			} else {
+				// If it doesn't fit, wrap the line
+				StringBuilder lineBuilder = new StringBuilder();
+				String[] words = line.split("\\s+"); // Split the line into words
+				for (String word : words) {
+					// Check if adding the current word exceeds the maximum width
+					if (g.getFontMetrics().stringWidth(lineBuilder + " " + word) > maxLineLength) {
+						// Draw the current line and reset line StringBuilder
+						g.drawString(lineBuilder.toString(), x, y);
+						y += UIConstants.Text.LINE_HEIGHT(f.getSize2D());
+						lineBuilder = new StringBuilder();
+					}
+					// Add the word to the current line
+					lineBuilder.append(word).append(" ");
 				}
-				// Add the word to the current line
-				lineBuilder.append(word).append(" ");
+				// Draw the last line
+				g.drawString(lineBuilder.toString(), x, y);
+				y += UIConstants.Text.LINE_HEIGHT(f.getSize2D());
 			}
-			// Draw the last line
-			g.drawString(lineBuilder.toString(), x, y);
-			y += UIConstants.Text.LINE_HEIGHT(f.getSize2D());
 		}
 	}
+	
 }

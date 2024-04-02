@@ -1,26 +1,32 @@
 package main;
 
 import data.Seed;
-import gameStates.GameStates;
-import gameStates.MainMenu;
-import gameStates.Play;
+import gameStates.*;
+import helper.SaveAndLoad;
 
 import java.awt.*;
+import java.awt.event.MouseListener;
 
 import static data.Seed.seed;
 import static main.GamePanel.SCREEN_HEIGHT;
 import static main.GamePanel.SCREEN_WIDTH;
 
-public class Game implements Runnable{
-	private GameWindow gameWindow;
-	private GamePanel gamePanel;
+public class Game implements Runnable {
+	private final GamePanel gamePanel;
 	private Thread gameThread;
 	private final int FPS = 60;
 	public static float WIDTH_SCALE = 1.0f;
 	public static float HEIGHT_SCALE = 1.0f;
 	
-	private Play playing;
+	private Startup startup;
 	private MainMenu mainMenu;
+	private Options options;
+	private DiffSelector diffSelector;
+	public static ClueScreen clueScreen;
+	private Credits credits;
+	public static Play playing;
+	private NewGameBlurb newGameBlurb;
+	private EndGame endGame;
 	
 	public Game() {
 		initClasses();
@@ -32,60 +38,55 @@ public class Game implements Runnable{
 	}
 	
 	private void initClasses() {
-		Seed seed = new Seed();
+		startup = new Startup(this);
+		new Seed();
 		mainMenu = new MainMenu(this);
+		options = new Options(this);
+		diffSelector = new DiffSelector(this);
+		newGameBlurb = new NewGameBlurb(this);
 		playing = new Play(this);
+		clueScreen = new ClueScreen(this);
+		credits = new Credits(this);
+		endGame = new EndGame(this);
 	}
 	
 	private void startGameLoop() {
 		gameThread = new Thread(this);
 		gameThread.start();
-		System.out.println("Gameloop Started");
+		System.out.println("Game Loop Started");
 	}
 	
-//	@SuppressWarnings("incomplete-switch")
 	public void render(Graphics g) {
 		switch (GameStates.state) {
-			case STARTUP -> {
-			}
-			case MAIN_MENU -> {
-			
-			}
-			case PLAY -> {
-				playing.draw(g);
-			}
-			case INVENTORY -> {
-			}
-			case MAP -> {
-			}
-			case OPTIONS -> {
-			}
-			case CREDITS -> {
-			}
+			case STARTUP -> startup.draw(g);
+			case MAIN_MENU -> mainMenu.draw(g);
+			case DIFF_SELECTION -> diffSelector.draw(g);
+			case PLAY -> playing.draw(g);
+			case CLUES -> clueScreen.draw(g);
+			case OPTIONS -> options.draw(g);
+			case CREDITS -> credits.draw(g);
+			case NEW_GAME_BLURB -> newGameBlurb.draw(g);
+			case END_STATE -> endGame.draw(g);
+			case INVENTORY, MAP, SAVE_AND_QUIT -> {}
 		}
 	}
 	
-	@SuppressWarnings("incomplete-switch")
 	public void update() {
 		updateScreen();
 		switch (GameStates.state) {
-			case STARTUP -> {
-			}
-			case MAIN_MENU -> {
-			
-			}
-			case PLAY -> {
-				playing.update();
-			}
-			case INVENTORY -> {
-			}
-			case MAP -> {
-			}
-			case OPTIONS -> {
-			}
-			case CREDITS -> {
-			}
+			case STARTUP -> startup.update();
+			case MAIN_MENU -> mainMenu.update();
+			case DIFF_SELECTION -> diffSelector.update();
+			case PLAY -> playing.update();
+			case INVENTORY, MAP -> {}
+			case CLUES -> clueScreen.update();
+			case OPTIONS -> options.update();
+			case CREDITS -> credits.update();
+			case NEW_GAME_BLURB -> newGameBlurb.update();
+			case END_STATE -> endGame.update();
 			case SAVE_AND_QUIT -> {
+				SaveAndLoad.Save();
+				System.out.println("Window Closed");
 				System.exit(0);
 			}
 		}
@@ -126,8 +127,37 @@ public class Game implements Runnable{
 		}
 	}
 	
+	public Startup getStartup() {
+		return startup;
+	}
+	public Options getOptions() {
+		return options;
+	}
+	
+	public ClueScreen getClueScreen() {
+		return clueScreen;
+	}
+	
+	public Credits getCredits() {
+		return credits;
+	}
+	
+	public DiffSelector getDiffSelector() {
+		return diffSelector;
+	}
 	public Play getPlaying() {
 		return playing;
+	}
+	
+	public MainMenu getMenu() {
+		return mainMenu;
+	}
+	
+	public NewGameBlurb getNewGameBlurb() {
+		return newGameBlurb;
+	}
+	public EndGame getEndGame() {
+		return endGame;
 	}
 	
 	public void updateScreen() {
