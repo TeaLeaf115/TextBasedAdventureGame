@@ -3,14 +3,14 @@ package data;
 public class Choice {
 	private String desc = """
 			""";
-	private Room leadsTo;
+	private String leadsTo;
 	
 	public Choice(String desc) {
 		this.desc = desc;
-		this.leadsTo = Room.PLACEHOLDER;
+		this.leadsTo = null;
 	}
 	
-	public Choice(String desc, Room leadsTo) {
+	public Choice(String desc, String leadsTo) {
 		this.desc = desc;
 		this.leadsTo = leadsTo;
 	}
@@ -19,7 +19,7 @@ public class Choice {
 		return desc;
 	}
 	
-	public Room getNextRoom() {
+	public String getNextRoom() {
 		return leadsTo;
 	}
 }

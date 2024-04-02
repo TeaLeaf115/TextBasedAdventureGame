@@ -10,6 +10,8 @@ public class Button {
 	protected GameStates state;
 	protected ButtonTypes type;
 	protected boolean mouseOver, mousePressed;
+	protected Rectangle bounds;
+	
 	
 	
 	public Button(int xPos, int yPos, ButtonTypes type, GameStates state) {
@@ -18,11 +20,11 @@ public class Button {
 		this.type = type;
 		initBounds();
 		this.state = state;
-		System.out.println(type.bounds.getBounds());
+//		System.out.println(type + ": " +  this.bounds.getBounds());
 	}
 	
 	private void initBounds() {
-		type.bounds.setLocation(xPos, yPos);
+		this.bounds = new Rectangle(xPos, yPos, type.width, type.height);
 	}
 	
 	public void draw(Graphics g) {
@@ -33,7 +35,7 @@ public class Button {
 	}
 	
 	public boolean isIn(MouseEvent e) {
-		return type.bounds.contains(e.getX(), e.getY());
+		return this.bounds.contains(e.getX(), e.getY());
 	}
 	
 	public boolean isMouseOver() {
@@ -53,7 +55,7 @@ public class Button {
 	}
 	
 	public void applyStateChange() {
-		GameStates.state = state;
+		GameStates.applyStateChange(state);
 	}
 	
 	public void resetBools() {
@@ -62,5 +64,9 @@ public class Button {
 	}
 	public GameStates getState() {
 		return state;
+	}
+	
+	public ButtonTypes getType() {
+		return type;
 	}
 }
