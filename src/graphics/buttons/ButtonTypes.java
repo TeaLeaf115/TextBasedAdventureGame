@@ -1,7 +1,9 @@
 package graphics.buttons;
 
 import helper.ImageHandler;
-import helper.UIConstants;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 import static helper.UIConstants.Buttons.DiffSelector.DIFF_HEIGHT;
 import static helper.UIConstants.Buttons.DiffSelector.DIFF_WIDTH;
@@ -9,11 +11,8 @@ import static helper.UIConstants.Buttons.GameOverButton.GAME_OVER_HEIGHT;
 import static helper.UIConstants.Buttons.GameOverButton.GAME_OVER_WIDTH;
 import static helper.UIConstants.Buttons.GuessButtons.GUESS_HEIGHT;
 import static helper.UIConstants.Buttons.GuessButtons.GUESS_WIDTH;
-import static helper.UIConstants.Buttons.PlayState.*;
 import static helper.UIConstants.Buttons.MenuStates.*;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
+import static helper.UIConstants.Buttons.PlayState.*;
 
 public enum ButtonTypes {
 	SETTINGS(SETTINGS_WIDTH,
@@ -36,7 +35,6 @@ public enum ButtonTypes {
 			CREDITS_HEIGHT,
 			ImageHandler.getImage(ImageHandler.CREDITS_BUTTON),
 			new Rectangle(CREDITS_WIDTH, CREDITS_HEIGHT)),
-	SOUND,
 	SAVE_AND_EXIT(SAVE_AND_QUIT_WIDTH,
 			SAVE_AND_QUIT_HEIGHT,
 			ImageHandler.getImage(ImageHandler.SAVE_AND_QUIT_BUTTON),
@@ -80,7 +78,7 @@ public enum ButtonTypes {
 	RESTART_BUTTON(GAME_OVER_WIDTH,
 			GAME_OVER_HEIGHT,
 			ImageHandler.getImage(ImageHandler.NEW_GAME_BUTTON),
-			new Rectangle(GAME_OVER_WIDTH, GAME_OVER_WIDTH));
+			new Rectangle(GAME_OVER_WIDTH, GAME_OVER_HEIGHT));
 	
 	public final int width, height;
 	public final BufferedImage img;
@@ -90,12 +88,5 @@ public enum ButtonTypes {
 		this.height = height;
 		this.img = img;
 		this.bounds = bounds;
-	}
-	
-	private ButtonTypes() {
-		this.width = 10;
-		this.height = 10;
-		this.img = ImageHandler.getImage(ImageHandler.PAUSE_BUTTON);
-		this.bounds = new Rectangle(width, height);
 	}
 }

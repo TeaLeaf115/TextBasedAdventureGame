@@ -1,28 +1,30 @@
 package gameStates;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-
 import data.Clues;
 import data.Rooms;
-import graphics.buttons.ButtonTypes;
 import graphics.buttons.Button;
+import graphics.buttons.ButtonTypes;
 import graphics.buttons.ChoiceButton;
 import helper.ImageHandler;
 import main.Game;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+
 import static data.Rooms.currRoomID;
 import static helper.SaveAndLoad.loadedFromSave;
-import static helper.UIConstants.Buttons.PlayState.*;
-import static helper.UIConstants.Buttons.*;
+import static helper.UIConstants.Buttons.PlayState.CHOICE_HEIGHT;
+import static helper.UIConstants.Buttons.PlayState.CHOICE_WIDTH;
+import static helper.UIConstants.Buttons.X_OFFSETS;
+import static helper.UIConstants.Buttons.Y_OFFSETS;
 import static helper.UIConstants.Description.BOX_HEIGHT;
 import static helper.UIConstants.RoomImage.SCALED_HEIGHT;
 import static main.GamePanel.SCREEN_WIDTH;
 
 public class Play extends State implements GSInterface{
-	private Button[] buttons = new Button[2];
-	private ChoiceButton[] choices = new ChoiceButton[4];
+	private final Button[] buttons = new Button[2];
+	private final ChoiceButton[] choices = new ChoiceButton[4];
 	public static Rooms rooms;
 	public static boolean newClue = true;
 	

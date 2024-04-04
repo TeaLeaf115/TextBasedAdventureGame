@@ -4,7 +4,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.StringReader;
 
 public class ImageHandler {
 	
@@ -50,7 +49,6 @@ public class ImageHandler {
 	// Buttons
 	public static final String TOP_BUTTON_SS = "res/images/ui/buttons/TopButton_SS.png";
 	public static final String CLUE_MENU_BUTTON = "res/images/ui/buttons/ClueViewer.png";
-	public static final String PAUSE_BUTTON = "res/images/ui/buttons/PauseButton.png";
 	public static final String SETTINGS_BUTTON = "res/images/ui/buttons/SettingsButton.png";
 	public static final String CHOICE_BUTTON = "res/images/ui/buttons/ChoiceButton.png";
 	
@@ -62,7 +60,6 @@ public class ImageHandler {
 	public static final String CONTINUE_BUTTON = "res/images/ui/buttons/ContinueButton.png";
 	public static final String NORM_DIFF_BUTTON = "res/images/ui/buttons/NormalDiffButton.png";
 	public static final String HARD_DIFF_BUTTON = "res/images/ui/buttons/HardDiffButton.png";
-	public static final String PLAY_AGAIN_BUTTON = "res/images/ui/buttons/PlayAgain.png";
 	public static final String GUESS_BUTTON = "res/images/ui/buttons/GuessButton.png";
 	
 	// Other Images

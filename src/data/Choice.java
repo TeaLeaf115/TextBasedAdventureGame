@@ -1,9 +1,8 @@
 package data;
 
 public class Choice {
-	private String desc = """
-			""";
-	private String leadsTo;
+	private final String desc;
+	private final String leadsTo;
 	
 	public Choice(String desc) {
 		this.desc = desc;

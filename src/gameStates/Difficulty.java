@@ -6,7 +6,7 @@ public enum Difficulty {
 	
 	public static Difficulty currDiff = NORMAL;
 	
-	public int numGuesses;
+	public final int numGuesses;
 	Difficulty(int numGuesses) {
 		this.numGuesses = numGuesses;
 	}

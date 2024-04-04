@@ -1,6 +1,5 @@
 package gameStates;
 
-;
 import data.Clues;
 import graphics.buttons.Button;
 import graphics.buttons.ButtonTypes;
@@ -12,7 +11,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import static gameStates.Difficulty.currDiff;
-import static helper.SaveAndLoad.loadedFromSave;
 import static helper.UIConstants.Text.*;
 import static main.GamePanel.*;
 

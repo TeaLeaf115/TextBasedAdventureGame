@@ -12,14 +12,14 @@ import static main.GamePanel.SCREEN_HEIGHT;
 import static main.GamePanel.SCREEN_WIDTH;
 
 public class Startup extends State implements GSInterface {
-	private BufferedImage image;
+	private final BufferedImage image;
 	private float alpha = 0.0f; // Initial alpha value for fade-in
-	private int fadeInDuration = 3000; // Duration of fade-in in milliseconds
-	private int holdDuration = 2000; // Duration of hold in milliseconds
-	private int fadeOutDuration = 3000; // Duration of fade-out in milliseconds
-	private int startDelay = 1500; // Delay before fade-in starts in milliseconds
-	private int endDelay = 1250; // Delay before transitioning to the main menu state in milliseconds
-	private long startTime; // Start time of the state
+	private final int fadeInDuration = 3000; // Duration of fade-in in milliseconds
+	private final int holdDuration = 2000; // Duration of hold in milliseconds
+	private final int fadeOutDuration = 3000; // Duration of fade-out in milliseconds
+	private final int startDelay = 1500; // Delay before fade-in starts in milliseconds
+	private final int endDelay = 1250; // Delay before transitioning to the main menu state in milliseconds
+	private final long startTime; // Start time of the state
 	
 	public Startup(Game game) {
 		super(game);

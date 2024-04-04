@@ -67,10 +67,11 @@ public class ClueList {
 		Map<String, String> studyMap = new LinkedHashMap<>();
 		studyMap.put("Foyer", "(Back to the window) Wow, what a nice bookshelf, I wonder what is on the other side...");
 		studyMap.put("Back Grounds", "A nice view from the window, and then some");
-		studyMap.put("Bedroom #3", "\"I come upon you in the night\n" +
-				"You can resist with a fight\n" +
-				"But when I eventually win\n" +
-				"We take flight\"");
+		studyMap.put("Bedroom #3", """
+				"I come upon you in the night
+				You can resist with a fight
+				But when I eventually win
+				We take flight\"""");
 		studyMap.put("Pool", "A nice view from the window, especially below");
 		studyMap.put("Prison/Holding Cell", "A nice view from the window, especially below");
 		studyMap.put("Garage", "You want to go so fast down these stairs");
@@ -160,11 +161,12 @@ public class ClueList {
 		bedroom3Map.put("Prison/Holding Cell", "It also has a bed, not as nice, but it is a place you can sleep");
 		bedroom3Map.put("Disposal Room", "A forever nights rest");
 		bedroom3Map.put("Dungeon Study", "I Don't Need Sleep I Need Answers - Sheldor The Conqueror");
-		bedroom3Map.put("Bedroom #5", "\"00110011 00100000 \n" +
-				"00101011 00100000 \n" +
-				"00110010 00100000 \n" +
-				"00111101 00100000 \n" +
-				"00111111\"");
+		bedroom3Map.put("Bedroom #5", """
+				"00110011 00100000\s
+				00101011 00100000\s
+				00110010 00100000\s
+				00111101 00100000\s
+				00111111\"""");
 		bedroom3Map.put("Garage", "You think back to your car bed you had when you were 4");
 		bedroom3Map.put("Laboratory", "It has 3 chairs s-I mean people can lay on...");
 		bedroom3Map.put("Dining Room", "Another place you can eat");

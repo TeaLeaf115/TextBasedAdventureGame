@@ -1,7 +1,6 @@
 package data;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Stack;
 
 import static data.ClueList.*;
@@ -11,8 +10,8 @@ public class Clues {
 	public static Stack<Clues> cluesFound = new Stack<>();
 	public static ArrayList<Clues> clueList = new ArrayList<>();
 	
-	private String desc = "";
-	private String leadsTo;
+	private final String desc;
+	private final String leadsTo;
 	
 	public Clues(String desc, String leadsTo) {
 		this.desc = desc;

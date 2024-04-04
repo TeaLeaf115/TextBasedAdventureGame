@@ -5,7 +5,6 @@ import gameStates.*;
 import helper.SaveAndLoad;
 
 import java.awt.*;
-import java.awt.event.MouseListener;
 
 import static data.Seed.seed;
 import static main.GamePanel.SCREEN_HEIGHT;
@@ -96,7 +95,7 @@ public class Game implements Runnable {
 	public void run() {
 		// 1 Billion nsec or 1 sec divided by the amount of FPS, giving us how many FPS
 		// we will get in nanoseconds.
-		double drawInterval = 1000000000/* nanoseconds */ / FPS;
+		double drawInterval = (double) 1000000000/* nanoseconds */ / FPS;
 		// 'delta' id the time period between the last frame and the current frame.
 		double delta = 0;
 		// The time, in nanoseconds, as the "last frame" to start the game loop.

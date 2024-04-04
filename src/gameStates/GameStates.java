@@ -1,7 +1,5 @@
 package gameStates;
 
-import helper.UIConstants;
-
 public enum GameStates {
 	STARTUP,
 	MAIN_MENU,
@@ -14,8 +12,7 @@ public enum GameStates {
 	CREDITS,
 	NEW_GAME_BLURB,
 	END_STATE,
-	SAVE_AND_QUIT,
-	BACK;
+	SAVE_AND_QUIT;
 	
 	public static GameStates state = STARTUP;
 	public static GameStates prevState = MAIN_MENU;

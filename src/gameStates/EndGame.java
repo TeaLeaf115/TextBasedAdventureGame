@@ -13,7 +13,6 @@ import java.awt.event.MouseEvent;
 import static gameStates.Play.newClue;
 import static helper.UIConstants.Buttons.GameOverButton.GAME_OVER_WIDTH;
 import static helper.UIConstants.Buttons.Y_OFFSETS;
-import static helper.UIConstants.Text.DIFF_PX;
 import static main.GamePanel.*;
 
 public class EndGame extends State implements GSInterface {

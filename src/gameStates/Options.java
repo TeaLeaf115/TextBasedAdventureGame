@@ -15,7 +15,7 @@ import static helper.UIConstants.Text.*;
 import static main.GamePanel.*;
 
 public class Options extends State implements GSInterface {
-	private Button[] buttons = new Button[3];
+	private final Button[] buttons = new Button[3];
 	
 	public Options(Game game) {
 		super(game);

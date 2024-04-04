@@ -1,7 +1,7 @@
 package graphics.buttons;
 
 //import data.Room;
-import data.Rooms;
+
 import gameStates.GameStates;
 import gameStates.Play;
 import main.GamePanel;
@@ -14,8 +14,7 @@ import static helper.UIConstants.Text.CHOICE_PX;
 import static main.GamePanel.font;
 
 public class ChoiceButton extends Button{
-	private Rooms room;
-	private int choiceNum;
+	private final int choiceNum;
 	public ChoiceButton(int xPos, int yPos, ButtonTypes type, int choiceNum) {
 		super(xPos, yPos, type, GameStates.PLAY);
 		this.choiceNum = choiceNum;

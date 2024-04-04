@@ -17,7 +17,7 @@ import static main.GamePanel.SCREEN_WIDTH;
 
 public class MainMenu extends State implements GSInterface {
 	
-	private Button[] buttons = new Button[4];
+	private final Button[] buttons = new Button[4];
 	public MainMenu(Game game) {
 		super(game);
 		loadButtons();

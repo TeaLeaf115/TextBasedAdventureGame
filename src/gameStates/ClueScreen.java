@@ -65,7 +65,7 @@ public class ClueScreen extends State implements GSInterface {
 	public void update() {
 		backButton.update();
 		guessButton.update();
-		if (clueList.size() == 0)
+		if (clueList.isEmpty())
 			GameStates.applyStateChange(GameStates.END_STATE);
 		if (guessesLeft == 0) {
 			EndGame.isDead = true;

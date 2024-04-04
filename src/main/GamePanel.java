@@ -14,8 +14,8 @@ import static helper.UIConstants.Text.*;
 public class GamePanel extends JPanel {
 	public static int SCREEN_WIDTH = 700;
 	public static int SCREEN_HEIGHT = 400;
-	private MouseInputs mouseInputs;
-	private Game game;
+	private final MouseInputs mouseInputs;
+	private final Game game;
 	public static Font font;
 	
 	public GamePanel(Game game) {
@@ -65,7 +65,6 @@ public class GamePanel extends JPanel {
 			if (g.getFontMetrics().stringWidth(line) <= maxLineLength) {
 				// If it fits, draw the line as is
 				g.drawString(line, x, y);
-				y += UIConstants.Text.LINE_HEIGHT(f.getSize2D());
 			} else {
 				// If it doesn't fit, wrap the line
 				StringBuilder lineBuilder = new StringBuilder();
@@ -83,8 +82,8 @@ public class GamePanel extends JPanel {
 				}
 				// Draw the last line
 				g.drawString(lineBuilder.toString(), x, y);
-				y += UIConstants.Text.LINE_HEIGHT(f.getSize2D());
 			}
+			y += UIConstants.Text.LINE_HEIGHT(f.getSize2D());
 		}
 	}
 	

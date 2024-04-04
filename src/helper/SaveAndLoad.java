@@ -31,7 +31,7 @@ public class SaveAndLoad {
 	public static void Save() {
 		try {
 			FileWriter fw = new FileWriter("src/save_data/save1.dat");
-			fw.write(Long.toString(seed) + "\n");
+			fw.write(seed + "\n");
 			fw.write(currDiff.ordinal() + "\n");
 			fw.write(currRoomID + "\n");
 			fw.write(cluesFound.size() + "\n");
