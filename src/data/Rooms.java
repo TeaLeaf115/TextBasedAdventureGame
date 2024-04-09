@@ -167,7 +167,7 @@ public class Rooms {
 				isPOI = true;
 				roomImg = ImageHandler.getImage(ImageHandler.POOL_AREA);
 				choices = new Choice[] {
-						new Choice("To Sitting Area", ""),
+						new Choice("To Sitting Area", "Sitting Area"),
 						new Choice("To Master Bathroom", "Master Bathroom"),
 						new Choice("To Back Grounds", "Back Grounds"),
 						new Choice("To Family Room", "Family Room"),
